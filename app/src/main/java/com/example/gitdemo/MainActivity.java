@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mButtonSub = findViewById(R.id.button_sub);
         mTextView = findViewById(R.id.text_view);
 
-        if (savedInstanceState !=null){
+        if (savedInstanceState != null) {
             number = savedInstanceState.getInt(KEY_SAVE);
             mTextView.setText(String.valueOf(number));
         }
@@ -48,14 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_zero:
+                number = 0;
+                mTextView.setText(String.valueOf(number));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(KEY_SAVE,number);
+        outState.putInt(KEY_SAVE, number);
     }
 
 }
