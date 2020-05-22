@@ -1,21 +1,17 @@
 package com.example.gitdemo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gitdemo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private Button mButtonAdd;
-    private Button mButtonSub;
-    private TextView mTextView;
+
     private static final String KEY_SAVE = "key_save";
     private int number = 0;
     private ActivityMainBinding mBinding;
@@ -25,26 +21,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        mButtonAdd = findViewById(R.id.button_add);
-        mButtonSub = findViewById(R.id.button_sub);
-        mTextView = findViewById(R.id.text_view);
+
 
         if (savedInstanceState != null) {
             number = savedInstanceState.getInt(KEY_SAVE);
-            mTextView.setText(String.valueOf(number));
+            mBinding.textView.setText(String.valueOf(number));
         }
 
-        mButtonAdd.setOnClickListener(new View.OnClickListener() {
+        mBinding.buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTextView.setText(String.valueOf(++number));
+                mBinding.textView.setText(String.valueOf(++number));
             }
         });
 
-        mButtonSub.setOnClickListener(new View.OnClickListener() {
+        mBinding.buttonSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTextView.setText(String.valueOf(--number));
+                mBinding.textView.setText(String.valueOf(--number));
             }
         });
 
@@ -61,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item_zero:
                 number = 0;
-                mTextView.setText(String.valueOf(number));
+                mBinding.textView.setText(String.valueOf(number));
                 break;
         }
         return super.onOptionsItemSelected(item);
